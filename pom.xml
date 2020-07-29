@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	
+    <groupId>com.github.cmcrobotics</groupId>
+    <artifactId>drivar-blockly</artifactId>
+    <version>0.1.0</version>
+    <packaging>jar</packaging>
+	
+    <name>Drivar :: Blockly library</name>
+    <description>${project.name}</description>
+	
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+    </properties>
+	
+    <build>
+        <plugins>
+           <plugin>
+               <groupId>com.github.eirslett</groupId>
+               <artifactId>frontend-maven-plugin</artifactId>
+               <version>1.7.6</version>
+               <configuration>
+                   <workingDirectory>${project.basedir}</workingDirectory>
+                   <nodeVersion>v12.18.3</nodeVersion>
+                   <npmVersion>6.14.6</npmVersion>
+               </configuration>
+               <executions>
+                   <execution>
+                       <id>install node and npm</id>
+                       <goals>
+                           <goal>install-node-and-npm</goal>
+                       </goals>
+                   </execution>
+                   <execution>
+                       <id>npm install</id>
+                       <goals>
+                           <goal>npm</goal>
+                       </goals>
+                   </execution>
+                   <execution>
+                       <id>npm run build</id>
+                       <goals>
+                           <goal>npm</goal>
+                       </goals>
+                       <configuration>
+                           <arguments>run build</arguments>
+                       </configuration>
+                   </execution>
+               </executions>
+           </plugin>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-enforcer-plugin</artifactId>
+             <version>3.0.0-M3</version>
+             <executions>
+               <execution>
+                 <id>enforce-versions</id>
+                 <goals>
+                   <goal>enforce</goal>
+                 </goals>
+                 <configuration>
+                   <rules>
+                     <requireMavenVersion>
+                       <version>3.2.5</version>
+                     </requireMavenVersion>
+                     <requireJavaVersion>
+                       <version>${java.version}</version>
+                     </requireJavaVersion>
+                   </rules>
+                 </configuration>
+               </execution>
+             </executions>
+           </plugin>
+          <plugin>
+             <groupId>com.amashchenko.maven.plugin</groupId>
+             <artifactId>gitflow-maven-plugin</artifactId>
+             <version>1.11.0</version>
+	     	 </plugin>
+	     	 <plugin>
+             <groupId>org.codehaus.mojo</groupId>
+             <artifactId>versions-maven-plugin</artifactId>
+             <version>2.5</version>
+             <configuration>
+               <generateBackupPoms>false</generateBackupPoms>
+               <processParent>true</processParent>
+               <processAllModules>true</processAllModules>
+             </configuration>
+	       </plugin>
+            </plugins>
+       
+    </build>
+		
+        <repositories>
+            <repository>
+                <id>jitpack.io</id>
+                <url>https://jitpack.io</url>
+            </repository>
+        </repositories>
+    </project>
