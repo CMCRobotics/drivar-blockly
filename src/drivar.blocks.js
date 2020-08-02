@@ -1,4 +1,6 @@
 
+import * as Blockly from 'blockly/core';
+
 Blockly.Blocks['motor_forward'] = {
   init: function() {
     this.appendDummyInput()
