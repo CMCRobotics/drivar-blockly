@@ -1,3 +1,6 @@
+
+import * as Blockly from 'blockly/core';
+
 function getGlobalVariablesStatement(block, addLineReturn) {
   if(addLineReturn=== undefined) {
     addLineReturn = true;
